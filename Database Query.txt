@@ -1,0 +1,62 @@
+CREATE DATABASE IF NOT EXISTS result_system;
+USE result_system;
+
+CREATE TABLE IF NOT EXISTS students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  reg_no VARCHAR(50) UNIQUE,
+  password VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS staff (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50),
+  password VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS results (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  reg_no VARCHAR(50),
+  subject VARCHAR(100),
+  marks INT,
+  revaluation_status VARCHAR(100) DEFAULT 'Not Applied'
+);
+
+CREATE TABLE IF NOT EXISTS revaluation_requests (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  reg_no VARCHAR(50),
+  subject VARCHAR(100),
+  reason TEXT,
+  submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Sample data
+INSERT INTO students (name, reg_no, password) VALUES
+('Kirran S T', 'S001', 'pass123');
+
+INSERT INTO staff (username, password) VALUES
+('admin', 'admin123');
+
+INSERT INTO results (reg_no, subject, marks, revaluation_status) VALUES
+('S001', 'web', 85, 'Not Applied'),
+('S001', 'java', 78, 'Revaluation Requested');
+
+INSERT INTO students (name, reg_no, password) VALUES
+('Balashankar R', 'S002', 'pass345');
+
+INSERT INTO staff (username, password) VALUES
+('admin', 'admin123');
+
+INSERT INTO results (reg_no, subject, marks, revaluation_status) VALUES
+('S002', 'c', 88, 'Not Applied'),
+('S002', 'Python’, 95, 'Revaluation Requested');
+
+INSERT INTO students (name, reg_no, password) VALUES
+('Harish', 'S003', 'pass1567');
+
+INSERT INTO staff (username, password) VALUES
+('admin', 'admin123');
+
+INSERT INTO results (reg_no, subject, marks, revaluation_status) VALUES
+('S001', 'AIML', 80, 'Not Applied'),
+('S001', 'toc', 85, 'Revaluation Requested');
